@@ -1,6 +1,6 @@
 Name:           gcab
-Version:        0.3
-Release:        3%{?dist}
+Version:        0.4
+Release:        1%{?dist}
 Summary:        Cabinet file library and tool
 
 Group:          Development/Tools
@@ -84,6 +84,9 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/libgcab-1.0.pc
 
 %changelog
+* Fri Feb  8 2013 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.4-1
+- Update to upstream v0.4.
+
 * Fri Feb  8 2013 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.3-3
 - Align more fields.
 - Use double percentage in comment.
