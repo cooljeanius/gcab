@@ -96,5 +96,5 @@ rm -rf %{buildroot}
 - Add more tags based on the el5 spec template.
 - Re-add --enable-fast-install trick, to make gcab relink.
 
-* Tue Jan 26 2013 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.3-1
+* Sun Jan 26 2013 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.3-1
 - Initial package (rhbz#895757)
