@@ -1,38 +1,32 @@
 Name:           gcab
 Version:        0.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Cabinet file library and tool
 
-Group:          Development/Tools
 License:        LGPLv2+
 #VCS:           git:git://git.gnome.org/gcab
 URL:            http://ftp.gnome.org/pub/GNOME/sources/gcab
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/gcab/%{version}/%{name}-%{version}.tar.xz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  intltool
 BuildRequires:  vala-tools
 BuildRequires:  glib2-devel
 BuildRequires:  gobject-introspection-devel
 BuildRequires:  zlib-devel
-Requires:       libgcab1%{?_isa} = %{version}-%{release}
 
 %description
 gcab is a tool to manipulate Cabinet archive.
 
 %package -n libgcab1
 Summary:        Library to create Cabinet archives
-Group:          Development/Libraries
 
 %description -n libgcab1
 libgcab is a library to manipulate Cabinet archive using GIO/GObject.
 
 %package -n libgcab1-devel
 Summary:        Development files to create Cabinet archives
-Group:          Development/Libraries
-Requires:       libgcab1%{?_isa} = %{version}-%{release}
-Requires:       pkgconfig
 Requires:       glib2-devel
+Requires:       pkgconfig
 
 %description -n libgcab1-devel
 libgcab is a library to manipulate Cabinet archive.
@@ -50,17 +44,11 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 make DESTDIR=%{buildroot} install
-# fixed in upstream master
-mkdir -p %{buildroot}%{_mandir}/man1/
-cp -p gcab.1 %{buildroot}%{_mandir}/man1/
 
 rm -f %{buildroot}%{_libdir}/*.a
 rm -f %{buildroot}%{_libdir}/*.la
 
 %find_lang %{name}
-
-%clean
-rm -rf %{buildroot}
 
 %post -n libgcab1 -p /sbin/ldconfig
 %postun -n libgcab1 -p /sbin/ldconfig
@@ -84,6 +72,10 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/libgcab-1.0.pc
 
 %changelog
+* Tue Feb 12 2013 Simone Caronni <negativo17@gmail.com> - 0.4-2
+- Removed rpm 4.5 macros/tags, it cannot be built with the vala in el5/el6.
+- Removed redundant requirement on libgcab1%%{_isa}, added automatically by rpm.
+
 * Fri Feb  8 2013 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.4-1
 - Update to upstream v0.4.
 
