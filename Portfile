@@ -1,0 +1,36 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem           1.0
+
+name                 gcab
+version              0.4
+categories           replaceme
+platforms            darwin
+maintainers          replaceme
+license              replaceme
+
+description          replaceme
+
+long_description     replaceme
+
+homepage             replaceme
+master_sites         replaceme
+
+checksums            sha256  f907b16f1246fbde9397363d9c4ad2291f2a8a53dcd4f5979d3912bb856991b8
+
+use_xz               yes
+depends_build-append port:pkgconfig \
+                     port:valabind \
+                     port:gettext \
+                     port:intltool
+use_autoreconf       yes
+depends_lib-append   port:glib2 \
+                     port:zlib \
+                     port:vala \
+                     port:gobject-introspection
+
+variant docs description {Builds documentation} {
+    depends_build-append port:gtk-doc
+    configure.args-append --enable-gtk-doc
+}

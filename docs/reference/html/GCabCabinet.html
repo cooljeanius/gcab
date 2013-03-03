@@ -1,0 +1,555 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GCabCabinet</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="GCab Reference Manual">
+<link rel="up" href="ch01.html" title="Cabinet API">
+<link rel="prev" href="ch01.html" title="Cabinet API">
+<link rel="next" href="GCabFolder.html" title="GCabFolder">
+<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GCab Reference Manual</th>
+<td><a accesskey="n" href="GCabFolder.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GCabCabinet.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#GCabCabinet.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GCabCabinet.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GCabCabinet.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="GCabCabinet"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GCabCabinet.top_of_page"></a>GCabCabinet</span></h2>
+<p>GCabCabinet — Cabinet archive file operations</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="GCabCabinet.stability-level"></a><h2>Stability Level</h2>
+Stable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="GCabCabinet.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;libgcab.h&gt;
+
+                    <a class="link" href="GCabCabinet.html#GCabCabinet-struct" title="GCabCabinet">GCabCabinet</a>;
+<a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="returnvalue">GCabCabinet</span></a> *       <a class="link" href="GCabCabinet.html#gcab-cabinet-new" title="gcab_cabinet_new ()">gcab_cabinet_new</a>                    (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GCabCabinet.html#gcab-cabinet-load" title="gcab_cabinet_load ()">gcab_cabinet_load</a>                   (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> *stream</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GCabCabinet.html#gcab-cabinet-extract" title="gcab_cabinet_extract ()">gcab_cabinet_extract</a>                (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="type">GFile</span></a> *path</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFile.html#GCabFileCallback" title="GCabFileCallback ()"><span class="type">GCabFileCallback</span></a> file_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GFile.html#GFileProgressCallback"><span class="type">GFileProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GCabCabinet.html#gcab-cabinet-extract-simple" title="gcab_cabinet_extract_simple ()">gcab_cabinet_extract_simple</a>         (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="type">GFile</span></a> *path</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFile.html#GCabFileCallback" title="GCabFileCallback ()"><span class="type">GCabFileCallback</span></a> file_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *         <a class="link" href="GCabCabinet.html#gcab-cabinet-get-folders" title="gcab_cabinet_get_folders ()">gcab_cabinet_get_folders</a>            (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GCabCabinet.html#gcab-cabinet-add-folder" title="gcab_cabinet_add_folder ()">gcab_cabinet_add_folder</a>             (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFolder.html" title="GCabFolder"><span class="type">GCabFolder</span></a> *folder</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GCabCabinet.html#gcab-cabinet-write" title="gcab_cabinet_write ()">gcab_cabinet_write</a>                  (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html"><span class="type">GOutputStream</span></a> *stream</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFile.html#GCabFileCallback" title="GCabFileCallback ()"><span class="type">GCabFileCallback</span></a> file_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GFile.html#GFileProgressCallback"><span class="type">GFileProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="GCabCabinet.html#gcab-cabinet-write-simple" title="gcab_cabinet_write_simple ()">gcab_cabinet_write_simple</a>           (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html"><span class="type">GOutputStream</span></a> *stream</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFile.html#GCabFileCallback" title="GCabFileCallback ()"><span class="type">GCabFileCallback</span></a> file_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+#define             <a class="link" href="GCabCabinet.html#GCAB-ERROR:CAPS" title="GCAB_ERROR">GCAB_ERROR</a>
+enum                <a class="link" href="GCabCabinet.html#GCabError" title="enum GCabError">GCabError</a>;
+</pre>
+</div>
+<div class="refsect1">
+<a name="GCabCabinet.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----GCabCabinet
+</pre>
+</div>
+<div class="refsect1">
+<a name="GCabCabinet.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="GCabCabinet.html#GCabCabinet--reserved" title='The "reserved" property'>reserved</a>"                 <a href="http://library.gnome.org/devel/glib/unstable/glib-Byte-Arrays.html#GByteArray"><span class="type">GByteArray</span></a>*           : Read / Write
+</pre>
+</div>
+<div class="refsect1">
+<a name="GCabCabinet.description"></a><h2>Description</h2>
+<p>
+A GCabCabinet is a handle to a Cabinet archive. It allows examining,
+extracting and creation of archives.
+</p>
+</div>
+<div class="refsect1">
+<a name="GCabCabinet.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="GCabCabinet-struct"></a><h3>GCabCabinet</h3>
+<pre class="programlisting">typedef struct _GCabCabinet GCabCabinet;</pre>
+<p>
+An opaque object holding a Cabinet file reference.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gcab-cabinet-new"></a><h3>gcab_cabinet_new ()</h3>
+<pre class="programlisting"><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="returnvalue">GCabCabinet</span></a> *       gcab_cabinet_new                    (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Create a new <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> object to read or create a Cabinet
+archive.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gcab-cabinet-load"></a><h3>gcab_cabinet_load ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gcab_cabinet_load                   (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a> *stream</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>
+Load a cabinet archive.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cabinet</code></em> :</span></p></td>
+<td>a <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td>a <a href="http://library.gnome.org/devel/gio/unstable/GInputStream.html"><span class="type">GInputStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td>optional <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object,
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to ignore. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to set on error, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gcab-cabinet-extract"></a><h3>gcab_cabinet_extract ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gcab_cabinet_extract                (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="type">GFile</span></a> *path</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFile.html#GCabFileCallback" title="GCabFileCallback ()"><span class="type">GCabFileCallback</span></a> file_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GFile.html#GFileProgressCallback"><span class="type">GFileProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>
+Extract files to given path.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cabinet</code></em> :</span></p></td>
+<td>a <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em> :</span></p></td>
+<td>the path to extract files</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>file_callback</code></em> :</span></p></td>
+<td>an optionnal <a class="link" href="GCabFile.html" title="GCabFile"><span class="type">GCabFile</span></a> callback,
+return <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> to filter out or skip files. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> user_data]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td>a progress callback. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> user_data]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>callback data. <span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td>optional <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object,
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to ignore. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to set on error, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gcab-cabinet-extract-simple"></a><h3>gcab_cabinet_extract_simple ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gcab_cabinet_extract_simple         (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="type">GFile</span></a> *path</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFile.html#GCabFileCallback" title="GCabFileCallback ()"><span class="type">GCabFileCallback</span></a> file_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>
+Extract files to given path.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cabinet</code></em> :</span></p></td>
+<td>a <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em> :</span></p></td>
+<td>the path to extract files</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>file_callback</code></em> :</span></p></td>
+<td>an optionnal <a class="link" href="GCabFile.html" title="GCabFile"><span class="type">GCabFile</span></a> callback,
+return <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> to filter out or skip files. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> user_data]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>callback data. <span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td>optional <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object,
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to ignore. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to set on error, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gcab-cabinet-get-folders"></a><h3>gcab_cabinet_get_folders ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *         gcab_cabinet_get_folders            (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>);</pre>
+<p>
+Get the Cabinet folders within the <em class="parameter"><code>cabinet</code></em>.
+Note that Cabinet folders are not like filesystem path, they are
+group of files sharing some layout parameters.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cabinet</code></em> :</span></p></td>
+<td>a <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>an array of <a class="link" href="GCabFolder.html" title="GCabFolder"><span class="type">GCabFolder</span></a>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GCabFolder][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gcab-cabinet-add-folder"></a><h3>gcab_cabinet_add_folder ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gcab_cabinet_add_folder             (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFolder.html" title="GCabFolder"><span class="type">GCabFolder</span></a> *folder</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>
+Add <em class="parameter"><code>folder</code></em> to <em class="parameter"><code>cabinet</code></em>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cabinet</code></em> :</span></p></td>
+<td>a <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>folder</code></em> :</span></p></td>
+<td>a <a class="link" href="GCabFolder.html" title="GCabFolder"><span class="type">GCabFolder</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to set on error, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gcab-cabinet-write"></a><h3>gcab_cabinet_write ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gcab_cabinet_write                  (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html"><span class="type">GOutputStream</span></a> *stream</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFile.html#GCabFileCallback" title="GCabFileCallback ()"><span class="type">GCabFileCallback</span></a> file_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GFile.html#GFileProgressCallback"><span class="type">GFileProgressCallback</span></a> progress_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>
+Save <em class="parameter"><code>cabinet</code></em> to the output stream <em class="parameter"><code>out</code></em>. <em class="parameter"><code>out</code></em> must be a <a href="http://library.gnome.org/devel/gio/unstable/GSeekable.html"><span class="type">GSeekable</span></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cabinet</code></em> :</span></p></td>
+<td>a <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td>a <a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html"><span class="type">GOutputStream</span></a> also <a href="http://library.gnome.org/devel/gio/unstable/GSeekable.html"><span class="type">GSeekable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>file_callback</code></em> :</span></p></td>
+<td>report current file being saved. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> user_data]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>progress_callback</code></em> :</span></p></td>
+<td>report saving progress. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> user_data]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data to pass to callbacks. <span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td>optional <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object,
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to ignore. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to set on error, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gcab-cabinet-write-simple"></a><h3>gcab_cabinet_write_simple ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gcab_cabinet_write_simple           (<em class="parameter"><code><a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a> *cabinet</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html"><span class="type">GOutputStream</span></a> *stream</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="GCabFile.html#GCabFileCallback" title="GCabFileCallback ()"><span class="type">GCabFileCallback</span></a> file_callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>
+Save <em class="parameter"><code>cabinet</code></em> to the output stream <em class="parameter"><code>out</code></em>. <em class="parameter"><code>out</code></em> must be a <a href="http://library.gnome.org/devel/gio/unstable/GSeekable.html"><span class="type">GSeekable</span></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cabinet</code></em> :</span></p></td>
+<td>a <a class="link" href="GCabCabinet.html" title="GCabCabinet"><span class="type">GCabCabinet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td>a <a href="http://library.gnome.org/devel/gio/unstable/GOutputStream.html"><span class="type">GOutputStream</span></a> also <a href="http://library.gnome.org/devel/gio/unstable/GSeekable.html"><span class="type">GSeekable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>file_callback</code></em> :</span></p></td>
+<td>report current file being saved. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The callback is valid only during the call to the method."><span class="acronym">scope call</span></acronym>][<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym> user_data]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data to pass to callbacks. <span class="annotation">[<acronym title="This parameter is a 'user_data', for callbacks; many bindings can pass NULL here."><span class="acronym">closure</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td>optional <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> object,
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to ignore. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to set on error, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GCAB-ERROR:CAPS"></a><h3>GCAB_ERROR</h3>
+<pre class="programlisting">#define GCAB_ERROR gcab_error_quark ()
+</pre>
+<p>
+Error domain for the GCab library. See <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> for more information
+on error domains.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GCabError"></a><h3>enum GCabError</h3>
+<pre class="programlisting">typedef enum {
+    GCAB_ERROR_FORMAT,
+    GCAB_ERROR_FAILED,
+} GCabError;
+</pre>
+<p>
+The various errors triggered by the GCab functions.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="GCAB-ERROR-FORMAT:CAPS"></a><span class="term"><code class="literal">GCAB_ERROR_FORMAT</code></span></p></td>
+<td>The given file is not of Cabinet format.
+</td>
+</tr>
+<tr>
+<td><p><a name="GCAB-ERROR-FAILED:CAPS"></a><span class="term"><code class="literal">GCAB_ERROR_FAILED</code></span></p></td>
+<td>General function failure.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="GCabCabinet.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="GCabCabinet--reserved"></a><h3>The <code class="literal">"reserved"</code> property</h3>
+<pre class="programlisting">  "reserved"                 <a href="http://library.gnome.org/devel/glib/unstable/glib-Byte-Arrays.html#GByteArray"><span class="type">GByteArray</span></a>*           : Read / Write</pre>
+<p>Reserved.</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GCabCabinet.see-also"></a><h2>See Also</h2>
+<a class="link" href="GCabFolder.html" title="GCabFolder"><span class="type">GCabFolder</span></a>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18.1</div>
+</body>
+</html>

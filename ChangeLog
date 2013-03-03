@@ -1,0 +1,4 @@
+2013-03-03  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* Makefile.am (EXTRA_DIST): Add build-aux/config.rpath.
+

@@ -1,0 +1,9 @@
+*.insert-header
+remove-potcdate.sed
+stamp-*
+core
+core.*
+gcab.*po
+*.new.po
+*.o
+*~

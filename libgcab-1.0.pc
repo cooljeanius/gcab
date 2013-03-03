@@ -1,0 +1,11 @@
+prefix=/var/root/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libgcab
+Description: Cabinet file library
+Requires: gio-2.0
+Version: 0.4
+Libs: -L${libdir} -lgcab-1.0
+Cflags: -I${includedir}/libgcab-1.0

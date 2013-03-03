@@ -1,0 +1,5 @@
+EXEEXT=
+
+_gcab() {
+  gcab$EXEEXT "$@"
+}

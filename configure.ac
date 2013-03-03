@@ -1,0 +1,117 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([gcab],[0.4],[marcandre.lureau@gmail.com])
+AC_CONFIG_SRCDIR([gcab.c])
+AC_CONFIG_AUX_DIR([build-aux])
+AC_CONFIG_MACRO_DIR([m4])
+
+AM_INIT_AUTOMAKE([1.11 dist-xz no-dist-gzip tar-ustar foreign -Wall subdir-objects -Wno-portability])
+AC_CONFIG_HEADERS([config.h])
+AM_MAINTAINER_MODE([enable])
+AM_SILENT_RULES([yes])
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_AWK
+AC_PROG_CPP
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+AC_PROG_CC
+AM_PROG_CC_C_O
+AC_PROG_INSTALL
+AC_PATH_PROG([LD_PATH],[ld])
+AC_LIB_PROG_LD_GNU
+AC_LIB_PREFIX
+AC_LIB_LINKFLAGS
+LT_INIT([win32-dll disable-fast-install])
+
+# AX_* macros are from autoconf-archive
+AX_DLL_STRING
+AX_SAVE_FLAGS
+AX_RPM_INIT
+AX_WITH_BUILD_PATH
+AX_APPEND_LINK_FLAGS([--version-script=./libgcab.syms])
+
+GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+PKG_PROG_PKG_CONFIG
+GOBJECT_INTROSPECTION_CHECK([0.9.4])
+AM_CONDITIONAL([GIR], [test "x$INTROSPECTION_MAKEFILE" != x])
+
+IT_PROG_INTLTOOL([0.40.0])
+GETTEXT_PACKAGE=AC_PACKAGE_NAME
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[The name of the gettext domain])
+AM_GLIB_GNU_GETTEXT
+AM_GNU_GETTEXT([external])
+
+# Checks for libraries.
+# FIXME: Replace `main' with a function in `-lz':
+AC_CHECK_LIB([z], [main])
+
+AM_PATH_GLIB_2_0([2.22.0], [], [AC_MSG_ERROR([glib required])], [gio])
+AM_PROG_VALAC([0.14])
+AC_PATH_PROG([VAPIGEN], [vapigen], [no])
+AC_SUBST(VAPIGEN)
+AM_CONDITIONAL([VAPI], [test "x$VAPIGEN" != xno])
+AC_CHECK_HEADERS([zlib.h], [], [AC_MSG_ERROR([zlib required])])
+
+gl_MANYWARN_ALL_GCC([warnings])
+nw=
+nw="$nw -Wsystem-headers"       # Don't let system headers trigger warnings
+nw="$nw -Wundef"                # All compiler preprocessors support #if UNDEF
+nw="$nw -Wtraditional"          # All compilers nowadays support ANSI C
+nw="$nw -Wconversion"           # These warnings usually don't point to mistakes.
+nw="$nw -Wsign-conversion"      # Likewise.
+nw="$nw -Wunused-parameter"     # Likewise.
+nw="$nw -Wunused-local-typedefs" # Likewise.
+nw="$nw -Wunsafe-loop-optimizations" # Likewise.
+# Enable all GCC warnings not in this list.
+gl_MANYWARN_COMPLEMENT([warnings], [$warnings], [$nw])
+for w in $warnings; do
+  gl_WARN_ADD([$w])
+done
+gl_WARN_ADD([-Wno-sign-compare])
+gl_WARN_ADD([-Wno-unused-parameter])
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([stdio.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_SIZE_T
+AC_TYPE_SSIZE_T
+
+# Checks for library functions.
+AC_CHECK_FUNCS([memset setlocale])
+
+AM_MISSING_PROG([AUTOM4TE], [autom4te])
+AC_CONFIG_TESTDIR([.])
+AC_CONFIG_FILES([atlocal])
+AC_CONFIG_FILES([tests/package.m4.tmp:tests/package.m4.in],
+                [$srcdir/build-aux/move-if-change tests/package.m4.tmp $srcdir/tests/package.m4
+                 cp $srcdir/tests/package.m4 tests/package.m4.tmp])
+
+
+AC_CONFIG_FILES([
+  Makefile
+  Makefile.orig
+  docs/Makefile
+  docs/reference/Makefile
+  docs/reference/gcab-docs.sgml
+  gcab.1
+  libgcab-1.0.pc
+  libgcab/Makefile
+  po/Makefile.in
+])
+AC_OUTPUT
+
+AC_MSG_NOTICE([
+        gcab $VERSION
+        ============
+
+        prefix:                   ${prefix}
+        c compiler:               ${CC}
+])

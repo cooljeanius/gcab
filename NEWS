@@ -1,0 +1,30 @@
+v0.4
+====
+
+- add missing call to g_type_init() for older GLib
+- translations updates
+- build warning fixes
+
+v0.3
+====
+
+- add LZX decompression, thanks to Wine project!
+- gcab learned the ubiquitous --version
+- overwrite files on extract
+
+v0.2
+====
+
+- add support for extraction of MSZIP cabinets
+- add 100% gtk-doc API documentation
+- make check doesn't require cabextract anymore
+- fix a few memleaks and misc bugs
+
+v0.1
+====
+
+This is the first release of gcab, a tool and library mainly made to
+create Cabinet files, using GObject/GIO API, providing GIR bindings.
+- creation supports plain and basic MSZIP compression
+- can open and list files from cabinet, no extraction
+- provided API/ABI stable
