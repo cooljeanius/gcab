@@ -10,9 +10,9 @@ platforms            darwin
 maintainers          gwmail.gwu.edu:egall openmaintainer
 license              LGPL-2.1+
 
-description          GObject Introspection interface description for ${name}
+description          ${name} is a program to create Microsoft cabinet (.cab) archives
 
-long_description     ${description}
+long_description     ${description}. It also provides a gobject-introspection interface.
 
 homepage
 # I tried using "gnome" for the master_sites entry but that didn't work
