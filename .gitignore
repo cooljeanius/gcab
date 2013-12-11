@@ -3,6 +3,7 @@
 *DS_Store*
 *deps/*.*o
 */*deps/*.*o
+*/*deps/.*
 *libs/*
 *.o
 *.lo
