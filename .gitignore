@@ -1,10 +1,13 @@
 /gcab-0.3.tar.xz
 /gcab-0.4.tar.xz
+gcab-0.4/*
 *DS_Store*
 *deps/*.*o
 */*deps/*.*o
 */*deps/.*
 *libs/*
+*/*libs/*
+*/*/*libs/*
 *.o
 *.lo
 *~
@@ -16,6 +19,7 @@ gcab
 *.la
 *.dylib
 Makefile
+Makefile*orig
 libtool
 *.insert-header
 remove-potcdate.sed
@@ -24,3 +28,11 @@ core
 core.*
 gcab.*po
 *.new.po
+*.gir
+*.typelib
+docs/reference/*.stamp
+docs/reference/xml/*
+docs/reference/html/*-insensitive.png
+docs/reference/html/*.sgml
+docs/reference/gcab-*.txt
+docs/reference/gcab.*

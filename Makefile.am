@@ -1,8 +1,8 @@
 NULL =
 BUILT_SOURCES =
 CLEANFILES =
-DISTCLEANFILES =
-ACLOCAL_AMFLAGS = -I m4
+DISTCLEANFILES = *~
+ACLOCAL_AMFLAGS = -I m4 --install
 
 makeflags_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 makeflags_0 = --no-print-directory -s
@@ -208,5 +208,7 @@ $(top_srcdir)/.version:
 	echo $(VERSION) > $@-t && mv $@-t $@
 dist-hook:
 	echo $(VERSION) > $(distdir)/.tarball-version
+distclean-local:
+	-rm -rf autom4te.cache || rmdir autom4te.cache
 
 -include $(top_srcdir)/git.mk
