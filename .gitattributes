@@ -10,7 +10,11 @@ build-aux/move-if-change linguist-vendored
 build-aux/test-driver linguist-vendored
 aclocal.m4 linguist-vendored
 m4/ax_*.m4 linguist-vendored
-m4/libtool.m4 linguist-vendored
+m4/glib*.m4 linguist-vendored
+m4/gtk-doc.m4 linguist-vendored
+m4/int*.m4 linguist-vendored
+m4/lib*.m4 linguist-vendored
 m4/lt*.m4 linguist-vendored
+m4/pkg.m4 linguist-vendored
 Makefile.in linguist-vendored
 docs/Makefile.in linguist-vendored
