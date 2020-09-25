@@ -12,3 +12,6 @@ aclocal.m4 linguist-vendored
 m4/*.m4 linguist-vendored
 Makefile.in linguist-vendored
 docs/Makefile.in linguist-vendored
+
+# Gnulib's git-merge-changelog driver:
+ChangeLog    merge=cl-merge

@@ -84,12 +84,17 @@ gl_WARN_ADD([-Wno-unused-parameter])dnl
 
 # Checks for header files.
 AC_DEFUN([AC_REQUIRE_HEADER_STDC],[
-  AC_REQUIRE([AC_HEADER_STDC])dnl
+  m4_ifdef([AC_HEADER_STDC],[
+    AC_REQUIRE([AC_HEADER_STDC])dnl
+  ],[
+    AC_REQUIRE([AC_CHECK_INCLUDES_DEFAULT])dnl
+  ])dnl
 ])dnl
 AC_REQUIRE_HEADER_STDC
 AC_CHECK_HEADERS([stdio.h])dnl
 
 # Checks for typedefs, structures, and compiler characteristics.
+AC_C_INLINE
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
