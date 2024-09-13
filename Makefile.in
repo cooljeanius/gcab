@@ -541,7 +541,7 @@ top_srcdir = @top_srcdir@
 NULL = 
 BUILT_SOURCES = $(GCAB_ENUMS) $(am__append_2) $(top_srcdir)/.version
 CLEANFILES = $(am__append_1) $(am__append_3) testsuite.log
-DISTCLEANFILES = *~ atconfig
+DISTCLEANFILES = *~ autoscan.log atconfig
 ACLOCAL_AMFLAGS = -I m4 --install
 makeflags_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 makeflags_0 = --no-print-directory -s
@@ -1645,6 +1645,7 @@ $(top_srcdir)/.version:
 dist-hook:
 	echo $(VERSION) > $(distdir)/.tarball-version
 distclean-local:
+	-rm -rf .deps || rmdir .deps
 	-rm -rf autom4te.cache || rmdir autom4te.cache
 
 -include $(top_srcdir)/git.mk
