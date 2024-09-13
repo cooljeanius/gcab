@@ -14,7 +14,9 @@ gcab-0.4/*
 *.cache
 *.log
 *.status
+confdefs.h
 config.h
+conftest*
 gcab
 *.la
 *.dylib

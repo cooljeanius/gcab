@@ -8,7 +8,10 @@ build-aux/ltmain.sh linguist-vendored
 build-aux/missing linguist-vendored
 build-aux/move-if-change linguist-vendored
 build-aux/test-driver linguist-vendored
-aclocal.m4 linguist-vendored
+aclocal.m4 linguist-generated
+configure linguist-generated
+configure.scan linguist-generated
+gtk-doc.make linguist-vendored
 m4/*.m4 linguist-vendored
 Makefile.in linguist-vendored
 docs/Makefile.in linguist-vendored

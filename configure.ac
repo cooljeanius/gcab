@@ -22,10 +22,26 @@ AC_PROG_RANLIB
 AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_INSTALL
-AC_PATH_PROG([LD_PATH],[ld])
+AC_PATH_PROGS([LD_PATH],
+              [ld gld gold mold sold lld ld.bfd ld.gold])
 AC_LIB_PROG_LD_GNU
 AC_LIB_PREFIX
 AC_LIB_LINKFLAGS
+if test "x${AR}" = "x"; then
+  test -z "${AR}" || unset AR
+  AC_CHECK_TOOLS([AR],[ar gar])dnl
+  ## might want to switch around these checks...
+  if test "x${ac_cv_prog_AR}" = "x"; then
+    test -z "${ac_cv_prog_AR}" || unset ac_cv_prog_AR
+    m4_ifdef([AC_PROG_AR],[
+      AC_PROG_AR
+    ],[
+      test -x "`which ar`" && echo "first ar in path is `which ar`"
+    ])
+  fi
+else
+  test -n "${AR}" && export AR
+fi
 LT_INIT([win32-dll disable-fast-install])dnl
 
 # AX_* macros are from autoconf-archive
@@ -91,7 +107,12 @@ AC_DEFUN([AC_REQUIRE_HEADER_STDC],[
   ])dnl
 ])dnl
 AC_REQUIRE_HEADER_STDC
-AC_CHECK_HEADERS([stdio.h])dnl
+AC_CHECK_HEADERS([libintl.h])dnl
+
+if test "x${ac_cv_header_unistd_h}" = "x"; then
+  test -z "${ac_cv_header_unistd_h}" || unset ac_cv_header_unistd_h
+  AC_CHECK_HEADERS([unistd.h]) # (keep autoscan happy)
+fi
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_INLINE
@@ -99,6 +120,7 @@ AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
 # Checks for library functions.
+AC_FUNC_MALLOC
 AC_CHECK_FUNCS([memset setlocale])dnl
 
 # Testsuite.
