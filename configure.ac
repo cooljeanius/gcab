@@ -9,17 +9,25 @@ AC_CONFIG_MACRO_DIR([m4])
   ## need to leave prev. line blank after macro ends for intltoolize
 AM_INIT_AUTOMAKE([1.11 dist-xz no-dist-gzip tar-ustar foreign -Wall subdir-objects -Wno-portability])
 AC_CONFIG_HEADERS([config.h])
-AM_MAINTAINER_MODE([enable])
+AM_MAINTAINER_MODE([disable])
 AM_SILENT_RULES([yes])dnl
 
 # Checks for programs.
 AC_PROG_CXX
-AC_PROG_AWK
+if test "x${AWK}" = "x"; then
+  test -z "${AWK}" || unset AWK
+  AC_PROG_AWK
+fi
 AC_PROG_CPP
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
-AC_PROG_CC
+if test "x${CC}" = "x"; then
+  test -z "${CC}" || unset CC
+  AC_PROG_CC
+else
+  test -n "${CC}" && export CC
+fi
 AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PATH_PROGS([LD_PATH],
@@ -107,8 +115,12 @@ AC_DEFUN([AC_REQUIRE_HEADER_STDC],[
   ])dnl
 ])dnl
 AC_REQUIRE_HEADER_STDC
-AC_CHECK_HEADERS([libintl.h])dnl
+AC_CHECK_HEADERS([dirent.h])dnl
 
+if test "x${ac_cv_header_libintl_h}" = "x"; then
+  test -z "${ac_cv_header_libintl_h}" || unset ac_cv_header_libintl_h
+  AC_CHECK_HEADERS([libintl.h]) # (keep autoscan happy)
+fi
 if test "x${ac_cv_header_unistd_h}" = "x"; then
   test -z "${ac_cv_header_unistd_h}" || unset ac_cv_header_unistd_h
   AC_CHECK_HEADERS([unistd.h]) # (keep autoscan happy)
